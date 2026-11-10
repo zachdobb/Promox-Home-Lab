@@ -38,3 +38,40 @@ This project demonstrates how I configured and managed a Windows Server Active D
 - Implement Group Policy Objects (GPOs).
 - Simulate common Help Desk support tickets.
 - Document troubleshooting procedures and results.
+
+## Active Directory Lab Screenshots
+
+### 1. Windows Server Dashboard
+Configured Windows Server with Active Directory Domain Services and DNS.
+
+![Server Manager](../screenshots/01-server-manager.png)
+
+### 2. Active Directory Organization
+Created the IT and Employees organizational units in the ad.homelab.test domain.
+
+![Active Directory](../screenshots/02-active-directory.png)
+
+### 3. IT Security Group
+Added John Smith to the IT-Staff security group.
+
+![IT-Staff](../screenshots/03-it-staff.png)
+
+### 4. Employee Security Group
+Added the employee account to the Employees-Staff security group.
+
+![Employees-Staff](../screenshots/04-employees-staff.png)
+
+### 5. Windows 11 Domain Membership
+Successfully joined PC01 to ad.homelab.test.
+
+![Domain Join](../screenshots/05-windows11-domain.png)
+
+### 6. Employee Login Verification
+Verified successful domain authentication using the whoami command.
+
+![Employee Login](../screenshots/06-employee-login.png)
+
+### 7. DNS Verification
+Verified that PC01 could locate DC-01 using an Active Directory DNS SRV lookup.
+
+![DNS Verification](../screenshots/07-dns-verification.png)
