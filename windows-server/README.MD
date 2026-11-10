@@ -78,24 +78,82 @@ Verified that PC01 could locate DC-01 using an Active Directory DNS SRV lookup.
 
 
 
+
 ## Active Directory File Sharing and Permissions
 
-### 8. Employees NTFS Permissions
-Configured NTFS permissions for the Employees folder and assigned Employee-Staff Modify access.
+### Project Overview
 
-![Employees NTFS Permissions](../screenshots/08-employees-ntfs.png)
+I configured Windows Server file sharing to simulate how a business manages access to department files. I used Active Directory security groups, NTFS permissions, and SMB network sharing to control employee access.
 
-### 9. Employees Share Permissions
-Configured SMB sharing with Employee-Staff Change and Read permissions.
+### Lab Environment
+
+- **Hypervisor:** Proxmox VE
+- **Server:** Windows Server (DC-01)
+- **Client:** Windows 11 (PC01)
+- **Domain:** ad.homelab.test
+- **Security Groups:** Employee-Staff and IT-Staff
+
+### Configuration
+
+1. Created Employees and IT folders in `C:\CompanyShares`.
+2. Configured NTFS permissions for both folders.
+3. Assigned Employee-Staff Modify permissions to the Employees folder.
+4. Assigned IT-Staff Modify permissions to the IT folder.
+5. Disabled NTFS inheritance and removed unnecessary permissions.
+6. Configured SMB sharing for the Employees folder.
+7. Assigned Employee-Staff Change and Read share permissions.
+8. Removed the Everyone group from the Employees share permissions.
+
+---
+
+### Screenshot 8 - Employees NTFS Permissions
+
+![Employees NTFS Permissions](../screenshots/08-employee-ntfs.png)
+
+[View Full Screenshot](../screenshots/08-employee-ntfs.png)
+
+I configured NTFS permissions for the Employees folder. The Employee-Staff security group has Modify access, while Administrators and SYSTEM retain Full Control. I disabled inheritance to prevent unnecessary inherited permissions.
+
+### Screenshot 9 - Employees Share Permissions
 
 ![Employees Share Permissions](../screenshots/09-employees-share.png)
 
-### 10. Employee File Share Access
-Successfully accessed the Employees share from Windows 11 and created Permission-Test.txt.
+[View Full Screenshot](../screenshots/09-employees-share.png)
 
-![Employee Access](../screenshots/10-employees-access.png)
+I configured SMB share permissions for the Employees folder. Employee-Staff has Change and Read permissions, allowing authorized employees to access and modify files over the network. I also removed the Everyone group.
 
-### 11. IT Folder Access Restriction
-Tested access to the IT share using an employee account and received Access Denied.
+### Screenshot 10 - Successful Employee Access
+
+![Successful Employee Access](../screenshots/10-employees-access.png)
+
+[View Full Screenshot](../screenshots/10-employees-access.png)
+
+I tested the Employees shared folder from my domain-joined Windows 11 virtual machine using an employee account. I successfully accessed `\\dc-01\Employees` and created `Permission-Test.txt`, confirming write access.
+
+### Screenshot 11 - IT Folder Access Restriction
 
 ![IT Access Denied](../screenshots/11-it-access-denied.png)
+
+[View Full Screenshot](../screenshots/11-it-access-denied.png)
+
+I tested access to the IT shared folder using a regular employee account. Windows displayed Access Denied, confirming that the employee account could not access restricted IT files.
+
+This demonstrates the principle of least privilege by limiting access based on security group membership.
+
+---
+
+### Skills Demonstrated
+
+- Active Directory administration
+- Windows Server administration
+- NTFS permissions
+- SMB network file sharing
+- Security group management
+- Role-based access control (RBAC)
+- Principle of least privilege
+- Windows 11 domain integration
+- File permission testing and troubleshooting
+
+### Project Outcome
+
+I successfully configured and tested department-based file access in a simulated business environment. This project helped me gain hands-on experience with Active Directory, Windows Server file sharing, and access control.
