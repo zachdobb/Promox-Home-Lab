@@ -75,3 +75,27 @@ Verified successful domain authentication using the whoami command.
 Verified that PC01 could locate DC-01 using an Active Directory DNS SRV lookup.
 
 ![DNS Verification](../screenshots/07-dns-verification.png)
+
+
+
+## Active Directory File Sharing and Permissions
+
+### 8. Employees NTFS Permissions
+Configured NTFS permissions for the Employees folder and assigned Employee-Staff Modify access.
+
+![Employees NTFS Permissions](../screenshots/08-employees-ntfs.png)
+
+### 9. Employees Share Permissions
+Configured SMB sharing with Employee-Staff Change and Read permissions.
+
+![Employees Share Permissions](../screenshots/09-employees-share.png)
+
+### 10. Employee File Share Access
+Successfully accessed the Employees share from Windows 11 and created Permission-Test.txt.
+
+![Employee Access](../screenshots/10-employees-access.png)
+
+### 11. IT Folder Access Restriction
+Tested access to the IT share using an employee account and received Access Denied.
+
+![IT Access Denied](../screenshots/11-it-access-denied.png)
