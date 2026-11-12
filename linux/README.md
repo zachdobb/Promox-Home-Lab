@@ -1,63 +1,41 @@
-## Rocky Linux Active Directory Integration
-
-I integrated a Rocky Linux 9 virtual machine into my existing Windows Server Active Directory environment. This allowed Active Directory users and groups to be recognized and authenticated on Linux.
+## Rocky Linux Active Directory Lab Screenshots
 
 ### 1. Rocky Linux Network Configuration
 
-The Rocky Linux VM was configured with a static IPv4 address.
+Verified the Rocky Linux network configuration, including the VM IP address, DNS server, and hostname.
 
-- Rocky Linux IP: `192.168.1.220`
-- Domain Controller/DNS: `192.168.1.83`
-- Interface: `ens18`
+![Rocky Linux IP Address](screenshots/09-rocky-ip-address.png)
 
-![Rocky Linux IP](screenshots/09-rocky-ip-address.png)
-
-### 2. DNS Configuration
-
-Rocky Linux was configured to use the Windows Server domain controller as its DNS server so that Active Directory records could be resolved.
-
-![Rocky Linux DNS](screenshots/10-rocky-dns-config.png)
-
-### 3. Linux Hostname Configuration
-
-The Rocky Linux hostname was configured as:
-
-`rocky-linux.ad.homelab.test`
+![Rocky Linux DNS Configuration](screenshots/10-rocky-dns-config.png)
 
 ![Rocky Linux Hostname](screenshots/11-rocky-hostname.png)
 
-### 4. Active Directory Discovery
+### 2. Active Directory Domain Discovery
 
-The `realm discover` command confirmed that Rocky Linux could locate the `ad.homelab.test` Active Directory domain.
+Verified that Rocky Linux could discover the `ad.homelab.test` Active Directory domain using `realm discover`.
 
-![Active Directory Discovery](screenshots/12-rocky-realm-discovery.png)
+![Rocky Linux Realm Discovery](screenshots/12-rocky-realm-discovery.png)
 
-### 5. Rocky Linux Joined to Active Directory
+### 3. Rocky Linux Domain Join
 
-Rocky Linux was successfully joined to the domain using `realmd`, Kerberos, and SSSD.
+Confirmed that Rocky Linux was successfully joined to the Active Directory domain.
 
-The `realm list` command confirmed the system was configured as a Kerberos domain member.
+The `realm list` output showed:
+
+`configured: kerberos-member`
 
 ![Rocky Linux Domain Join](screenshots/13-rocky-domain-joined.png)
 
-### 6. Active Directory User Verification
+### 4. Active Directory User Verification
 
-The Active Directory account `zdobbins@ad.homelab.test` was successfully recognized by Rocky Linux along with its domain group memberships.
+Verified that the Active Directory user `zdobbins@ad.homelab.test` was recognized by Rocky Linux and that domain group memberships were available.
 
-![Active Directory User](screenshots/14-rocky-ad-user.png)
+![Rocky Linux Active Directory User](screenshots/14-rocky-ad-user.png)
 
-### 7. Active Directory Login Test
+### 5. Active Directory Login Test
 
-The Active Directory user successfully authenticated to Rocky Linux, demonstrating centralized authentication between Windows Active Directory and Linux.
+Successfully authenticated to Rocky Linux using the Active Directory account.
 
-![Active Directory Login](screenshots/15-rocky-ad-login.png)
+This confirmed that Active Directory authentication was working between Windows Server and Rocky Linux.
 
-### Skills Demonstrated
-
-- Linux administration
-- Active Directory integration
-- DNS configuration and troubleshooting
-- Kerberos authentication
-- SSSD configuration
-- Linux networking
-- Cross-platform identity management
+![Rocky Linux Active Directory Login](screenshots/15-rocky-ad-login.png)
