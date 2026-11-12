@@ -157,3 +157,108 @@ This demonstrates the principle of least privilege by limiting access based on s
 ### Project Outcome
 
 I successfully configured and tested department-based file access in a simulated business environment. This project helped me gain hands-on experience with Active Directory, Windows Server file sharing, and access control.
+
+
+
+
+
+
+## Group Policy (GPO) — Employee Security Policy
+
+### Project Overview
+
+I configured and deployed a Group Policy Object (GPO) in Windows Server to automatically activate a password-protected screen saver after five minutes of inactivity.
+
+This project simulates how IT administrators centrally enforce workstation security policies in a business environment.
+
+### Lab Environment
+
+- **Hypervisor:** Proxmox VE
+- **Domain Controller:** DC-01
+- **Client:** Windows 11 (PC01)
+- **Active Directory Domain:** ad.homelab.test
+- **Target OU:** Employees
+- **GPO Name:** Employee Security Policy
+
+### Configuration
+
+1. Created a new GPO named Employee Security Policy.
+2. Linked the GPO to the Employees organizational unit.
+3. Enabled the screen saver.
+4. Configured the screen saver timeout to 300 seconds.
+5. Enabled password protection for the screen saver.
+6. Configured the blank screen saver using `scrnsave.scr`.
+7. Refreshed Group Policy on Windows 11 using `gpupdate /force`.
+8. Verified the applied policy using `gpresult /r`.
+9. Tested the screen saver and confirmed that authentication was required when returning to the session.
+
+---
+
+### Screenshot 12 — GPO Creation and OU Linking
+
+![GPO Created](../screenshots/12-gpo-created.png)
+
+[View Full Screenshot](../screenshots/12-gpo-created.png)
+
+Created the Employee Security Policy GPO and linked it to the Employees OU. This allows user-based security settings to target employee accounts within the organizational unit.
+
+### Screenshot 13 — Enable Screen Saver
+
+![Screen Saver Enabled](../screenshots/13-screen-saver-enabled.png)
+
+[View Full Screenshot](../screenshots/13-screen-saver-enabled.png)
+
+Enabled the screen saver through Group Policy to establish an inactivity-based security control for employee sessions.
+
+### Screenshot 14 — Screen Saver Timeout
+
+![Screen Saver Timeout](../screenshots/14-screen-saver-timeout.png)
+
+[View Full Screenshot](../screenshots/14-screen-saver-timeout.png)
+
+Configured a 300-second (5-minute) screen saver timeout. This helps reduce the risk of unattended workstations remaining accessible.
+
+### Screenshot 15 — Password Protection
+
+![Password Protection](../screenshots/15-password-protection.png)
+
+[View Full Screenshot](../screenshots/15-password-protection.png)
+
+Enabled password protection so employees must authenticate when returning from the screen saver.
+
+### Screenshot 16 — Blank Screen Saver
+
+![Blank Screen Saver](../screenshots/16-blank-screen-saver.png)
+
+[View Full Screenshot](../screenshots/16-blank-screen-saver.png)
+
+Configured `scrnsave.scr` as the required screen saver executable, providing a blank display after inactivity.
+
+### Screenshot 17 — Group Policy Verification
+
+![GPO Verification](../screenshots/17-gpo-verification.png)
+
+[View Full Screenshot](../screenshots/17-gpo-verification.png)
+
+Executed `gpresult /r` on the Windows 11 domain-joined client. The results confirmed that Employee Security Policy was applied to the employee account.
+
+I also tested the screen saver after five minutes of inactivity and verified that the session required authentication.
+
+---
+
+### Skills Demonstrated
+
+- Windows Server administration
+- Active Directory Group Policy management
+- Organizational Unit (OU) targeting
+- Security policy configuration
+- Centralized workstation management
+- Group Policy deployment and troubleshooting
+- `gpupdate` and `gpresult` commands
+- Security testing and verification
+
+### Project Outcome
+
+Successfully deployed and verified an Active Directory Group Policy that enforces a password-protected screen saver for employee accounts. This project demonstrates centralized security administration and practical Group Policy troubleshooting.
+
+
